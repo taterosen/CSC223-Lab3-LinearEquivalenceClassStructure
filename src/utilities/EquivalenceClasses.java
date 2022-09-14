@@ -28,7 +28,9 @@ public class EquivalenceClasses<T>
 	}
 	
 	/**
-	 * 
+	 * Adds element to the Equiv. class within _rest in which it belongs and returns true if added
+	 * If element doesn't fit with any of the equiv. classes it is not added and returns false
+	 * @return boolean
 	 * */
 	public boolean add(T element) 
 	{
@@ -36,11 +38,16 @@ public class EquivalenceClasses<T>
 	}
 	
 	/**
-	 * 
+	 * Checks if target is in any of the Equiv. classes in _rest
+	 * @return boolean
 	 * */
 	public boolean contains(T target) 
 	{
+		for(int i = 0; i < numClasses(); i++) 
+			if(_rest.get(i).contains(target))
+				return true;
 		
+		return false;
 	}
 	
 	/**
@@ -67,18 +74,29 @@ public class EquivalenceClasses<T>
 	}
 	
 	/**
-	 * 
+	 * Returns the index of the class in _rest containing element
+	 * If element is not in _rest return -1
+	 * @return int
 	 * */
 	protected int indexOfClass(T element) 
 	{
+		for(int i = 0; i < numClasses(); i++) 
+			if(_rest.get(i).contains(element))
+				return i;
 		
+		return -1;
 	}
 	
 	/**
-	 * 
+	 * Returns String version of _rest
+	 * @return String
 	 * */
 	public String toString() 
 	{
+		String restString = "";
+		for(int i = 0; i < numClasses(); i++) 
+			restString += _rest.get(i).toString() + "\n";
 		
+		return restString;
 	}
 }
