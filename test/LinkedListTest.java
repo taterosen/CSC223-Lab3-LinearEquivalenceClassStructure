@@ -8,6 +8,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class LinkedListTest 
 {
+	
+	@Test 
+	void testAddToFront() {
+		LinkedList<Integer> arr = new LinkedList<Integer>();
+		assertEquals(0, arr.size());
+		arr.addToFront(1);
+		assertEquals(1, arr.size());
+	}
+	
 	@Test
 	void testToSting() 
 	{

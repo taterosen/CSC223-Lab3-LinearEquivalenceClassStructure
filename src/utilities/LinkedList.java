@@ -145,7 +145,9 @@ public class LinkedList<T> {
 	 * */
 	public Node last() {
 		Node current = _head._next;
+		// Loop through the nodes until you find the last node
 		while(!current.equals(_tail)) {
+			// Check to see if the current node is the last node
 			if (atEnd(current)) return current;
 		}
 		return _head;
@@ -180,7 +182,7 @@ public class LinkedList<T> {
 	}
 	
 	/**
-	 * checks to if Node n is the last in the list
+	 * checks to see if Node n is the last in the list
 	 * @return boolean
 	 * */
 	public boolean atEnd (Node n) {
