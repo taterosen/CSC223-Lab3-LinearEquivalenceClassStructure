@@ -1,7 +1,16 @@
 package utilities;
 
 import java.util.Comparator;
+
 import java.util.List;
+
+/**
+ * An array list that stores many linked 
+ * equivalence classes.
+ * 
+ * @author taterosen & milesdame & nickmakuch
+ * @date 09/14/2022
+ */
 
 public class EquivalenceClasses<T>
 {

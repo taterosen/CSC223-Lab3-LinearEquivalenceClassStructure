@@ -2,6 +2,14 @@ package utilities;
 
 import java.util.Comparator;
 
+/**
+ * A linked list of equivalent values according
+ * to a specified canonical value.
+ * 
+ * @author taterosen & milesdame & nickmakuch
+ * @date 09/14/2022
+ */
+
 public class LinkedEquivalenceClass<T> 
 {
 	protected T _canonical;
