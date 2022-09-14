@@ -1,8 +1,11 @@
 package utilities;
 
 /**
+ * A list of nodes including head and tail sentinels
+ * that each contain an item and a next, which points
+ * to the next node in the list.
  * 
- * @author Tate Rosen and Miles Dame
+ * @author taterosen & milesdame & nickmakuch
  * @date 09/07/2022
  */
 
@@ -91,7 +94,7 @@ public class LinkedList<T> {
 		// Loop through the list until you find the node with the data equal to target
 		for (Node n = _head._next; n != _tail; n = n._next) {
 			// When you find the data set the found variable equal to that node
-			if (n._item == target) found = n;
+			if (n._item.equals(target)) found = n;
 		}
 		return found;
 	}
@@ -108,7 +111,7 @@ public class LinkedList<T> {
 	 * 
 	 * */
 	private Node previous (T target, Node current) { 
-		if(current.equals(_tail)) return null;
+		if(current == _tail) return null;
 		if(current._next._item.equals(target)) return current;
 		return previous(target, current._next);
 	}
@@ -146,7 +149,7 @@ public class LinkedList<T> {
 	public Node last() {
 		Node current = _head._next;
 		// Loop through the nodes until you find the last node
-		while(!current.equals(_tail)) {
+		while(current != _tail) {
 			// Check to see if the current node is the last node
 			if (atEnd(current)) return current;
 		}
@@ -187,7 +190,7 @@ public class LinkedList<T> {
 	 * @return boolean
 	 * */
 	public boolean atEnd (Node n) {
-		if (n._next.equals(_tail)) return true;
+		if (n._next == _tail) return true;
 		return false;
 	}
 	
@@ -195,7 +198,7 @@ public class LinkedList<T> {
 	 * 
 	 * */
 	public boolean nextToEnd(Node n) {
-		if (n._next._next.equals(_tail)) return true;
+		if (n._next._next == _tail) return true;
 		return false;
 	}
 	
@@ -214,7 +217,7 @@ public class LinkedList<T> {
 	 * Helper method to reverse the list recursively 
 	 * */
 	private void reverse(LinkedList<T> list, Node n) {
-		if(n.equals(_head)) return;
+		if(n == _head) return;
 		this.addToBack(n._item);
 		Node prev = list.previous(n._item);
 		reverse(list, prev);
