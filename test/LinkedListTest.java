@@ -21,8 +21,9 @@ public class LinkedListTest
 	void testToSting() 
 	{
 		LinkedList<Integer> tester = new LinkedList<>();
-		tester.addToFront(1);
-		assertEquals("1", tester.toString());
+		tester.addToFront(3);
+		System.out
+		assertEquals("3", tester.toString());
 		//assertFalse(tester.isEmpty());
 	}
 	

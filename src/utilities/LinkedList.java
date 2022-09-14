@@ -167,6 +167,7 @@ public class LinkedList<T> {
 	 * Converts list to a String
 	 * @return String
 	 * */
+	@Override 
 	public String toString () {
 		return toStringHelper(new StringBuilder(), _head._next);
 	}
@@ -217,6 +218,16 @@ public class LinkedList<T> {
 		this.addToBack(n._item);
 		Node prev = list.previous(n._item);
 		reverse(list, prev);
+	}
+	
+	/**
+	 * Gets the first element in the LinkedList returns it and removes it
+	 * @return Node 
+	 */
+	public T pop() {
+		T data = _head._next._item;
+		_head._next = _head._next._next;
+		return data;
 	}
 	
 }
