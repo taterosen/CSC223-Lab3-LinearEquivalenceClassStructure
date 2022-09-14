@@ -34,7 +34,14 @@ public class EquivalenceClasses<T>
 	 * */
 	public boolean add(T element) 
 	{
-		
+		boolean check = false;
+		for(int i = 0; i < numClasses(); i++) 
+		{
+			check = _rest.get(i).add(element);
+			if(check == true)
+				return check;
+		}
+		return check;
 	}
 	
 	/**
