@@ -120,7 +120,7 @@ public class LinkedList<T> {
 	 * @param next - node after the one to be deleted
 	 */
 	private void deleteNode(Node previous, Node next) {
-		
+		// See the next value of the previous node to point to the next value of the node being deleted
 		previous._next = next;
 	}
 	
@@ -130,8 +130,9 @@ public class LinkedList<T> {
 	 * */
 	public boolean remove (T target) {
 		if(this.contains(target)) {
-			deletedNode(this.previous(target), target._next);
-			// how to get one pointing to this
+			// Find the target node and delete it
+			this.deleteNode(this.previous(target), this.get(target));
+			// Adjust the size of the list to reflect the removal.
 			_size--;
 			return true;
 		}
