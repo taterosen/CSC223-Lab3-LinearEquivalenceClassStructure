@@ -2,7 +2,7 @@ package utilities;
 
 /**
  * 
- * @author taterosen
+ * @author Tate Rosen and Miles Dame
  * @date 09/07/2022
  */
 
@@ -81,6 +81,22 @@ public class LinkedList<T> {
 	}
 	
 	/**
+	 * Finds and returns the node containing a given piece of data 
+	 * @param target - the piece of data we are looking for
+	 * @return Node
+	 */
+	public Node get(T target) {
+		// Create node variable to return
+		Node found = null;
+		// Loop through the list until you find the node with the data equal to target
+		for (Node n = _head._next; n != _tail; n = n._next) {
+			// When you find the data set the found variable equal to that node
+			if (n._item == target) found = n;
+		}
+		return found;
+	}
+	
+	/**
 	 * 
 	 * */
 	public Node previous (T target) {
@@ -96,6 +112,17 @@ public class LinkedList<T> {
 		if(current._next._item.equals(target)) return current;
 		return previous(target, current._next);
 	}
+	/**
+	 * A helper method to assist with deleting a node. 
+	 * Takes the node before the node to be deleted and points its _next at the node
+	 * after the one to be deleted
+	 * @param previous - node before the one to be deleted
+	 * @param next - node after the one to be deleted
+	 */
+	private void deleteNode(Node previous, Node next) {
+		
+		previous._next = next;
+	}
 	
 	/**
 	 * Removes Node containing data "target"
@@ -103,6 +130,7 @@ public class LinkedList<T> {
 	 * */
 	public boolean remove (T target) {
 		if(this.contains(target)) {
+			deletedNode(this.previous(target), target._next);
 			// how to get one pointing to this
 			_size--;
 			return true;
