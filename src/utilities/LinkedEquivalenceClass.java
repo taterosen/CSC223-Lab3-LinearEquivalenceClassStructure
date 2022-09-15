@@ -40,7 +40,7 @@ public class LinkedEquivalenceClass<T>
 
 	/**
 	 * Retrieves and returns the canonical
-	 * @return
+	 * @return T (the canonical data)
 	 */
 	public T canonical()
 	{
@@ -52,29 +52,38 @@ public class LinkedEquivalenceClass<T>
 	 * @return true or false;
 	 */
 	public boolean isEmpty()
-	{
+	{	
+		// if _rest and canonical are both empty the the LinkedEquivalenceClass is empty
 		if (_rest.size() == 0 && _canonical == null) return true;
 		return false;
 	}
 
 	/**
-	 * Clears the LinkedEquivalenceClass
+	 * Clears the LinkedEquivalenceClass by setting the 
+	 * canonical to null and calling clear on _rest
 	 */
 	public void clear()
-	{
+	{	
 		_canonical = null;
 		_rest.clear();
 	}
 
-
+	/**
+	 * Removes all items except the canonical by clearing _rest
+	 */
 	public void clearNonCanonical()
 	{
 		_rest.clear();
 	}
-
-	public int size()
-	{
-		return _rest.size() + 1;
+	
+	/**
+	 * Returns the size of the LinkedEquivalenceClass
+	 * @return int 
+	 */
+	public int size() {	
+		// Check to make sure _canonical has data before adding one to return the size
+		if (_canonical != null) return _rest.size() + 1;
+		else return _rest.size();
 	}
 
 	public boolean add(T element)
@@ -122,7 +131,8 @@ public class LinkedEquivalenceClass<T>
 
 	public String toString()
 	{
-
+		StringBuilder s = new StringBuilder(_canonical.toString());
+		s.append(_rest.toString());
 	}
 
 }
