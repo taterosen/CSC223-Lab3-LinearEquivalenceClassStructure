@@ -224,13 +224,22 @@ public class LinkedList<T> {
 	}
 	
 	/**
-	 * Gets the first element in the LinkedList returns it and removes it
-	 * @return Node 
+	 * Gets the first element in the LinkedList and returns it 
+	 * @return data stored in node 
 	 */
-	public T pop() {
-		T data = _head._next._item;
-		_head._next = _head._next._next;
-		return data;
+	public T peakFirst() {
+		return _head._next._item;
 	}
+	
+	/**
+	 * Gets the first element in the LinkedList and returns it 
+	 * @return data stored in node 
+	 */
+	public T peakLast() {
+		return this.last()._item;
+	}
+	
+
+	
 	
 }
