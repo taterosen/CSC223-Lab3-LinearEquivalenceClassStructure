@@ -84,33 +84,51 @@ public class LinkedListTest {
 		LinkedList<Integer> arr = new LinkedList<Integer>();
 		arr.addToFront(1);
 		assertEquals(1, arr.size());
-		assertEquals(1, arr.pop());
+		assertEquals(1, arr.peakFirst());
 		arr.addToFront(2);
-		assertEquals(2, arr.pop());
+		assertEquals(2, arr.peakFirst());
 	}
 	
 	/**
 	 * Tests the contains() method using an empty and non-empty Integer LinkedList
 	 * */
 	@Test
-	void testContains()
-	{
+	void testContains() {
 		//Tests on empty list
-		LinkedList<Integer> tester = new LinkedList<>();
-		assertFalse(tester.contains(1));
+		LinkedList<Integer> arr = new LinkedList<>();
+		assertFalse(arr.contains(1));
 
 		//Tests on non-empty list
-		assertTrue(tester.isEmpty());
-		tester.addToFront(1);
-		tester.addToFront(2);
-		tester.addToFront(3);
-		tester.addToFront(4);
-		tester.addToFront(5);
-		assertFalse(tester.isEmpty());
-		assertTrue(tester.contains(1));
-		assertTrue(tester.contains(3));
+		arr.addToFront(1);
+		arr.addToFront(2);
+		arr.addToFront(3);
+		arr.addToFront(4);
+		arr.addToFront(5);
+		assertTrue(arr.contains(1));
+		assertTrue(arr.contains(3));
+		assertFalse(arr.contains(56));
 	}
-}
+	
+	/**
+	 * Tests the remove() method
+	 */
+	@Test
+	void testRemove() {
+		//Tests on empty list
+		LinkedList<Integer> arr = new LinkedList<>();
+		assertFalse(arr.remove(1));
+
+		//Tests on non-empty list
+		arr.addToFront(1);
+		arr.addToFront(2);
+		arr.addToFront(3);
+		arr.addToFront(4);
+		arr.addToFront(5);
+		assertTrue(arr.remove(1));
+		
+		// T
+		assertFalse(arr.remove(56));
+	}
 
 	/**
 	 * Tests the toString() method using an empty and non-empty Integer LinkedList
@@ -150,4 +168,4 @@ public class LinkedListTest {
 
 	}
 
-	
+}
