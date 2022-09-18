@@ -146,7 +146,7 @@ public class LinkedList<T> {
 	 * getter for last Node in the list
 	 * @return Node
 	 * */
-	public Node last() {
+	private Node last() {
 		Node current = _head._next;
 		// Loop through the nodes until you find the last node
 		while(current != _tail) {
