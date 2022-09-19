@@ -2,49 +2,46 @@ package utilities;
 
 /**
  * A list of nodes including head and tail sentinels
- * that each contain an item and a next, which points
- * to the next node in the list.
  * 
  * @author taterosen & milesdame & nickmakuch
  * @date 09/07/2022
  */
 
 public class LinkedList<T> {
-	
+
 	Node _head;
 	Node _tail;
 	int _size;
-	
+
 	/**
-	 * Node class
+	 * A private class that creates a "Node"
+	 * object that contains an item and a next, 
+	 * which points to the next node in the list.
 	 * */
 	private class Node{
 		private T _item;
 		private Node _next;
-		
+
 		public Node(T item, Node next) {
 			this._item = item;
 			this._next = next;
 		}
 	}
-	
-	/**
-	 * Constructor: initializes head & tail nodes and size
-	 * */
+
 	public LinkedList() {
 		this._tail = new Node(null, null);
 		this._head = new Node(null, _tail);
 		this._size = 0;
 	}
-	
+
 	/**
-	 * checks if List  is empty
+	 * checks if List is empty
 	 * @return boolean
 	 * */
 	public boolean isEmpty() {
 		return this._head._next == _tail;
 	}
-	
+
 	/**
 	 * Clears list
 	 * */
@@ -52,27 +49,29 @@ public class LinkedList<T> {
 		this._head._next = _tail;
 		this._size = 0;
 	}
-	
+
 	/**
-	 * getter for size
-	 * @return int
+	 * 
+	 * @return number of nodes in the list
 	 * */
 	public int size() {
 		return this._size;
 	}
-	
+
 	/**
-	 * Adds Node with data "element" to front of list
+	 * Adds Node with given item to front of list
 	 * */
 	public void addToFront(T element) {
 		Node addedElement = new Node(element, _head._next);
 		this._head._next = addedElement;
 		_size++;
 	}
-	
+
 	/**
-	 * Checks if Node with data "target" is in the list
-	 * @return boolean
+	 * 
+	 * @param target - the piece of data we are looking for
+	 * @return true if Node with given item is in the list,
+	 * 			false otherwise
 	 * */
 	public boolean contains (T target) {
 		Node n = _head._next;
@@ -82,31 +81,30 @@ public class LinkedList<T> {
 		}
 		return false;
 	}
-	
+
 	/**
-	 * Finds and returns the node containing a given piece of data 
+	 * 
 	 * @param target - the piece of data we are looking for
-	 * @return Node
+	 * @return the Node containing a given piece of data 
 	 */
 	public Node get(T target) {
-		// Create node variable to return
 		Node found = null;
-		// Loop through the list until you find the node with the data equal to target
 		for (Node n = _head._next; n != _tail; n = n._next) {
-			// When you find the data set the found variable equal to that node
 			if (n._item.equals(target)) found = n;
 		}
 		return found;
 	}
-	
+
 	/**
-	 * 
+	 * @param target - the piece of data in the Node following 
+	 * 					the Node we are looking for
+	 * @return the before the Node containing a given piece of data 
 	 * */
 	public Node previous (T target) {
 		if(!this.contains(target)) return null;
 		return previous(target, this._head);
 	}
-	
+
 	/**
 	 * 
 	 * */
@@ -115,36 +113,25 @@ public class LinkedList<T> {
 		if(current._next._item.equals(target)) return current;
 		return previous(target, current._next);
 	}
+
 	/**
-	 * A helper method to assist with deleting a node. 
-	 * Takes the node before the node to be deleted and points its _next at the node
-	 * after the one to be deleted
-	 * @param previous - node before the one to be deleted
-	 * @param next - node after the one to be deleted
-	 */
-	private void deleteNode(Node previous, Node next) {
-		// See the next value of the previous node to point to the next value of the node being deleted
-		previous._next = next;
-	}
-	
-	/**
-	 * Removes Node containing data "target"
-	 * @return boolean
+	 *  
+	 * @return true if Node containing data "target" is removed,
+	 * 			false otherwise
 	 * */
 	public boolean remove (T target) {
 		if(this.contains(target)) {
-			// Find the target node and delete it
-			this.deleteNode(this.previous(target), this.get(target));
-			// Adjust the size of the list to reflect the removal.
+			this.previous(target)._next = 
+					this.previous(target)._next._next;
 			_size--;
 			return true;
 		}
 		return false;
 	}
-	
+
 	/**
-	 * getter for last Node in the list
-	 * @return Node
+	 *  
+	 * @return the last Node in the list
 	 * */
 	public Node last() {
 		Node current = _head._next;
@@ -155,9 +142,10 @@ public class LinkedList<T> {
 		}
 		return _head;
 	}
-	
+
 	/**
-	 * Adds a node with data "element" to back of list
+	 * Adds a node with item "element" to back of list
+	 * @param element - given object to be added
 	 * */
 	public void addToBack(T element) {
 		Node addedElement = new Node(element, _tail);
@@ -165,16 +153,16 @@ public class LinkedList<T> {
 		last._next = addedElement;
 		_size++;
 	}
-	
+
 	/**
-	 * Converts list to a String
-	 * @return String
+	 *
+	 * @return String representing the linked list
 	 * */
 	@Override 
 	public String toString () {
 		return toStringHelper(new StringBuilder(), _head._next);
 	}
-	
+
 	/**
 	 * Helper method to convert list to a String
 	 * @return String
@@ -184,53 +172,85 @@ public class LinkedList<T> {
 		s.append(n._item + " ");
 		return toStringHelper(s, n._next);
 	}
-	
+
 	/**
-	 * checks to see if Node n is the last in the list
-	 * @return boolean
+	 * 
+	 * @return true if Node n is the last in the list,
+	 * 			false otherwise
 	 * */
 	public boolean atEnd (Node n) {
 		if (n._next == _tail) return true;
 		return false;
 	}
-	
+
 	/**
 	 * 
+	 * @return true if Node n is next to last in the list,
+	 * 			false otherwise
 	 * */
 	public boolean nextToEnd(Node n) {
 		if (n._next._next == _tail) return true;
 		return false;
 	}
+
 	
-	/**
-	 * Reverses that list
-	 * */
-	public void reverse() {
-		
+	/*
+	public void reverse1() {
 		LinkedList<T> copyList = this;
 		Node n = copyList.last();
 		this.clear();
-		this.reverse(copyList, n);
+		this.reverse1(copyList, n);
 	}
-	
-	/**
-	 * Helper method to reverse the list recursively 
-	 * */
-	private void reverse(LinkedList<T> list, Node n) {
-		if(n == _head) return;
+
+	private void reverse1(LinkedList<T> list, Node n) {
+		if(n == list._head) return;
 		this.addToBack(n._item);
 		Node prev = list.previous(n._item);
-		reverse(list, prev);
+		reverse1(list, prev);
 	}
 	
-	/**
-	 * Gets the first element in the LinkedList returns it and removes it
-	 * @return Node 
-	 */
+
 	public T pop() {
 		T data = _head._next._item;
 		_head._next = _head._next._next;
 		return data;
 	}
+
+
+	public void reverse2() {
+		_head._next = this.last();
+		Node newLast = reverse2(this.last());
+		newLast._next = _tail;
+	}
 	
+
+
+	private Node reverse2(Node n) {
+		Node prev = this.previous(n._item);
+		if(prev != _head) {
+			n._next = prev;
+			Node nextN = reverse2(prev);
+			return nextN;
+		}
+		return n;;'/'
+		/""
+	}
+	*/
+	
+	
+	public void reverse() {
+		Node newLast = reverse(_head._next);
+		newLast._next = _tail;
+	}
+	
+	private Node reverse (Node n) {
+		if (n._next == _tail) {
+			_head._next = n;
+			return n;
+		}
+		Node node = reverse(n._next);
+		node._next = n;
+		return n;
+	}
+
 }
