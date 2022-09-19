@@ -133,7 +133,7 @@ public class LinkedList<T> {
 	 *  
 	 * @return the last Node in the list
 	 * */
-	public Node last() {
+	private Node last() {
 		Node current = _head._next;
 		// Loop through the nodes until you find the last node
 		while(current != _tail) {
@@ -209,9 +209,34 @@ public class LinkedList<T> {
 		reverse1(list, prev);
 	}
 	
+<<<<<<< HEAD
 
+=======
+	/**
+	 * Gets the first element in the LinkedList and returns it 
+	 * @return data stored in node 
+	 */
+	public T peakFirst() {
+		return _head._next._item;
+	}
+	
+	/**
+	 * Gets the first element in the LinkedList and returns it 
+	 * @return data stored in node 
+	 */
+	public T peakLast() {
+		Node n = this.last();
+		return n._item;
+	}
+	
+	/**
+	 * Gets the first element in the LinkedList and returns and removes it 
+	 * @return data stored in node 
+	 */
 	public T pop() {
+		// Get data from first node
 		T data = _head._next._item;
+		// Set head node's next to the node after the first node
 		_head._next = _head._next._next;
 		return data;
 	}
@@ -232,10 +257,8 @@ public class LinkedList<T> {
 			Node nextN = reverse2(prev);
 			return nextN;
 		}
-		return n;;'/'
-		/""
+		return n;
 	}
-	*/
 	
 	
 	public void reverse() {

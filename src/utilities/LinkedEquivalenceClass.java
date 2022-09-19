@@ -17,7 +17,7 @@ import java.util.Comparator;
  * A linked list of equivalent values according
  * to a specified canonical value.
  *
- * @author taterosen & milesdame & nickmakuch
+ * @author Tate Rosen & Miles Dame & Nick MaKuch
  * @date 09/14/2022
  */
 
@@ -131,8 +131,12 @@ public class LinkedEquivalenceClass<T>
 
 	public String toString()
 	{
-		StringBuilder s = new StringBuilder(_canonical.toString());
-		s.append(_rest.toString());
+		StringBuilder str = new StringBuilder();
+		str.append("Canonical: " + _canonical + " Rest: ");
+		str.append(_rest.toString());
+		
+		return str.toString();
+		
 	}
 
 }
