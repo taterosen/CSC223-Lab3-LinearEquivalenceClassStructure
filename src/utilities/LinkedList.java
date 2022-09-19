@@ -139,6 +139,7 @@ public class LinkedList<T> {
 		while(current != _tail) {
 			// Check to see if the current node is the last node
 			if (atEnd(current)) return current;
+			current = current._next;
 		}
 		return _head;
 	}
@@ -168,7 +169,10 @@ public class LinkedList<T> {
 	 * @return String
 	 * */
 	private String toStringHelper(StringBuilder s, Node n) {
-		if(atEnd(n)) return s.toString();
+		if(atEnd(n)) {
+			s.append(n._item);
+			return s.toString();
+		}
 		s.append(n._item + " ");
 		return toStringHelper(s, n._next);
 	}
@@ -193,25 +197,6 @@ public class LinkedList<T> {
 		return false;
 	}
 
-	
-	/*
-	public void reverse1() {
-		LinkedList<T> copyList = this;
-		Node n = copyList.last();
-		this.clear();
-		this.reverse1(copyList, n);
-	}
-
-	private void reverse1(LinkedList<T> list, Node n) {
-		if(n == list._head) return;
-		this.addToBack(n._item);
-		Node prev = list.previous(n._item);
-		reverse1(list, prev);
-	}
-	
-<<<<<<< HEAD
-
-=======
 	/**
 	 * Gets the first element in the LinkedList and returns it 
 	 * @return data stored in node 
@@ -221,7 +206,7 @@ public class LinkedList<T> {
 	}
 	
 	/**
-	 * Gets the first element in the LinkedList and returns it 
+	 * Gets the last element in the LinkedList and returns it 
 	 * @return data stored in node 
 	 */
 	public T peakLast() {
@@ -239,25 +224,6 @@ public class LinkedList<T> {
 		// Set head node's next to the node after the first node
 		_head._next = _head._next._next;
 		return data;
-	}
-
-
-	public void reverse2() {
-		_head._next = this.last();
-		Node newLast = reverse2(this.last());
-		newLast._next = _tail;
-	}
-	
-
-
-	private Node reverse2(Node n) {
-		Node prev = this.previous(n._item);
-		if(prev != _head) {
-			n._next = prev;
-			Node nextN = reverse2(prev);
-			return nextN;
-		}
-		return n;
 	}
 	
 	

@@ -174,11 +174,11 @@ public class LinkedListTest {
 	void testReverse()
 	{
 		LinkedList<Integer> tester = new LinkedList<>();
-		tester.addToFront(1);
-		tester.addToFront(2);
-		tester.addToFront(3);
-		tester.addToFront(4);
-		tester.addToFront(5);
+		tester.addToBack(1);
+		tester.addToBack(2);
+		tester.addToBack(3);
+		tester.addToBack(4);
+		tester.addToBack(5);
 
 		assertEquals("1 2 3 4 5", tester.toString());
 		tester.reverse();
