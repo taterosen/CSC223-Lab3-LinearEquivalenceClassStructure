@@ -75,28 +75,52 @@ public class LinkedEquivalenceClass<T>
 		if (_canonical != null) return _rest.size() + 1;
 		else return _rest.size();
 	}
-
+	
+	/**
+	 * Adds an element to the LinkedEquivalenceClass
+	 * @param element
+	 * @return true if added otherwise false
+	 */
 	public boolean add(T element)
 	{
 		_rest.addToFront(element);
 		return _rest.contains(element);
 	}
-
+	
+	/**
+	 * Check to see if the class contains an element.
+	 * @param target
+	 * @return true if it does otherwise false
+	 */
 	public boolean contains(T target)
 	{
-		return _rest.contains(target);
+		return _rest.contains(target) || target == _canonical;
 	}
-
+	
+	/**
+	 * Check to see if an element belongs in the LinkedEquivalenceClass
+	 * @param target
+	 * @return true if it does otherwise false
+	 */
 	public boolean belongs(T target)
 	{
 		return(_comparator.compare(_canonical, target) == 0);
 	}
-
+	
+	/**
+	 * Removes a given element from the LinkedEquivalenceClass
+	 * @param target
+	 * @return true if successful otherwise false
+	 */
 	public boolean remove(T target)
 	{
 		return _rest.remove(target);
 	}
 
+	/**
+	 * Removes the canonical and sets a new canonical
+	 * @return  true if successful otherwise false
+	 */
 	public boolean removeCanonical()
 	{
 		if (_canonical != null) {
@@ -106,7 +130,12 @@ public class LinkedEquivalenceClass<T>
 		return false;
 
 	}
-
+	
+	/**
+	 * Takes the current canonical and places it in the list and adds a new canonical
+	 * @param element
+	 * @return true if successful otherwise false
+	 */
 	public boolean demoteAndSetCanonical(T element)
 	{
 		if (_canonical != null) {
@@ -119,6 +148,9 @@ public class LinkedEquivalenceClass<T>
 
 	}
 
+	/**
+	 * Generates a string with the canonical element followed by all of the other elements 
+	 */
 	public String toString()
 	{
 		StringBuilder str = new StringBuilder();
