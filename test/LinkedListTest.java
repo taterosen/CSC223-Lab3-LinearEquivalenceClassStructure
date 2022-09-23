@@ -1,7 +1,7 @@
 /**
  * A set of tests for the LinkedList class
  * 
- * @author Miles Dame 
+ * @author Miles Dame & Tate Rosen & Nick Makuch
  * @date 09/07/2022
  */
 

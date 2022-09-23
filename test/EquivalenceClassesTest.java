@@ -11,15 +11,15 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class EquivalenceClassesTest 
 {
-	public EquivalenceClasses createEC() {
+	public EquivalenceClasses<Integer> createEC() {
 		Comparator<Integer> c = new Comparator<Integer>()
 		{
 			// All even integers are 'equivalent'
 			// All odd integers are 'equivalent'
 			public int compare(Integer x, Integer y)
-			{ return x % 2 == y % 2 ? 0 : 1; }
+			{ return x % 5 == y % 5 ? 0 : 1; }
 		};
-		return new EquivalenceClasses(c);
+		return new EquivalenceClasses<Integer>(c);
 	}
 
 	/**
@@ -30,6 +30,7 @@ public class EquivalenceClassesTest
 	{
 		EquivalenceClasses<Integer> tester = createEC();
 		assertTrue(tester instanceof EquivalenceClasses<?>);
+		
 	}
 
 	/**
@@ -39,6 +40,13 @@ public class EquivalenceClassesTest
 	void testAdd() 
 	{
 		EquivalenceClasses<Integer> tester = createEC();
+		tester.add(0);
+		assertTrue(tester.contains(0));
+		assertEquals(1, tester.size());
+		
+		tester.add(1);
+		
+		
 	}
 
 	/**

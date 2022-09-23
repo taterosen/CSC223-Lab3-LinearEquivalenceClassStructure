@@ -183,8 +183,7 @@ public class LinkedList<T> {
 	 * 			false otherwise
 	 * */
 	public boolean atEnd (Node n) {
-		if (n._next == _tail) return true;
-		return false;
+		return n._next == _tail;
 	}
 
 	/**
@@ -193,8 +192,7 @@ public class LinkedList<T> {
 	 * 			false otherwise
 	 * */
 	public boolean nextToEnd(Node n) {
-		if (n._next._next == _tail) return true;
-		return false;
+		return n._next._next == _tail;
 	}
 
 	/**
@@ -235,8 +233,16 @@ public class LinkedList<T> {
 		return data;
 	}
 	
-	
+	/**
+	 * Reverses the list by calling a recursive helper method that
+	 * takes a Node. If the node points to tail, it makes that node 
+	 * pointed to by head. If not, it calls the method again and points
+	 * the Node that is returned to the current Node, then returns the 
+	 * current Node. Then in the original method, it points the new last
+	 * Node to tail. 
+	 */
 	public void reverse() {
+		if (this.size() <= 1) return;
 		Node newLast = reverse(_head._next);
 		newLast._next = _tail;
 	}

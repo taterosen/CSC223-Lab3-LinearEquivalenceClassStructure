@@ -29,20 +29,20 @@ public class EquivalenceClasses<T>
 	
 	/**
 	 * Adds element to the Equiv. class within _rest in which it belongs and returns true if added
-	 * If element doesn't fit with any of the equiv. classes it is not added and returns false
+	 * If element doesn't fit with any of the equiv. classes, a new class is added
 	 * @return boolean
 	 * */
 	public boolean add(T element) 
 	{
-		boolean check = false;
 		for(int i = 0; i < numClasses(); i++) 
 		{
-			if(_rest.get(i).belongs(element))
-				check = _rest.get(i).add(element);
-			if(check == true)
-				return check;
+			if(_rest.get(i).belongs(element)) {
+				return _rest.get(i).add(element);
+			}
 		}
-		return check;
+		LinkedEquivalenceClass<T> lec = new LinkedEquivalenceClass<>(_comparator);
+		if (!lec.add(element)) return false;
+		return _rest.add(lec);
 	}
 	
 	/**

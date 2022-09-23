@@ -85,6 +85,10 @@ public class LinkedEquivalenceClass<T>
 	 */
 	public boolean add(T element)
 	{
+		if(_canonical == null) {
+			_canonical = element;
+			return true;
+		}
 		_rest.addToFront(element);
 		return _rest.contains(element);
 	}
