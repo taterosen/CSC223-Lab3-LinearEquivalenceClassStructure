@@ -1,3 +1,9 @@
+/**
+ * A set of tests for the LinkedList class
+ * 
+ * @author Miles Dame 
+ * @date 09/07/2022
+ */
 
 
 import org.junit.jupiter.api.Test;
@@ -57,7 +63,6 @@ public class LinkedListTest {
 	void testSize() {
 		//test on empty list
 		LinkedList<Integer> arr = new LinkedList<Integer>();
-		arr.clear();
 		assertTrue(arr.isEmpty());
 		assertEquals(0, arr.size());
 		
@@ -171,18 +176,81 @@ public class LinkedListTest {
 	 * and comparing it to what it should yield
 	 */
 	@Test
-	void testReverse()
-	{
-		LinkedList<Integer> tester = new LinkedList<>();
-		tester.addToBack(1);
-		tester.addToBack(2);
-		tester.addToBack(3);
-		tester.addToBack(4);
-		tester.addToBack(5);
+	void testReverse() {
+		LinkedList<Integer> arr = new LinkedList<>();
+		arr.addToBack(1);
+		arr.addToBack(2);
+		arr.addToBack(3);
+		arr.addToBack(4);
+		arr.addToBack(5);
 
-		assertEquals("1 2 3 4 5", tester.toString());
-		tester.reverse();
-		assertEquals("5 4 3 2 1", tester.toString());
+		assertEquals("1 2 3 4 5", arr.toString());
+		arr.reverse();
+		assertEquals("5 4 3 2 1", arr.toString());
+
+	}
+	
+	/**
+	 * Tests the pop() method by popping two elements from the front
+	 * and comparing to make sure they were removed
+	 */
+	@Test
+	void testPop() {
+		// Test on empty list
+		LinkedList<Integer> arr = new LinkedList<>();
+		assertEquals(null, arr.pop());
+		
+		// Add some items
+		arr.addToBack(1);
+		arr.addToBack(2);
+		arr.addToBack(3);
+		arr.addToBack(4);
+		arr.addToBack(5);
+
+		assertEquals(1, arr.pop());
+		assertEquals(2, arr.pop());
+
+	}
+	
+	/**
+	 * Tests the pop() method by popping two elements from the front
+	 * and comparing to make sure they were removed
+	 */
+	@Test
+	void testPeakFirst() {
+		// Test on empty list
+		LinkedList<Integer> arr = new LinkedList<>();
+		assertEquals(null, arr.peakFirst());
+		
+		// Add some items
+		arr.addToBack(1);
+		arr.addToBack(2);
+		arr.addToBack(3);
+		arr.addToBack(4);
+		arr.addToBack(5);
+
+		assertEquals(1, arr.peakFirst());
+
+	}
+	
+	/**
+	 * Tests the pop() method by popping two elements from the front
+	 * and comparing to make sure they were removed
+	 */
+	@Test
+	void testPeakLast() {
+		// Test on empty list
+		LinkedList<Integer> arr = new LinkedList<>();
+		assertEquals(null, arr.peakLast());
+		
+		// Add some items
+		arr.addToBack(1);
+		arr.addToBack(2);
+		arr.addToBack(3);
+		arr.addToBack(4);
+		arr.addToBack(5);
+
+		assertEquals(5, arr.peakLast());
 
 	}
 
