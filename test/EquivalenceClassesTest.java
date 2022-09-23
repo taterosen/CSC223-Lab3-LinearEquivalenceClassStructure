@@ -22,39 +22,71 @@ public class EquivalenceClassesTest
 		return new EquivalenceClasses(c);
 	}
 
+	/**
+	 * Tests constructor of EquivalenceClasses
+	 * */
 	@Test 
-	void testEquivalenceClasses() {
-
-
+	void testEquivalenceClasses() 
+	{
+		EquivalenceClasses<Integer> tester = createEC();
+		assertTrue(tester instanceof EquivalenceClasses<?>);
 	}
 
+	/**
+	 * Tests add()
+	 * */
 	@Test 
-	void testAdd() {
-
+	void testAdd() 
+	{
+		EquivalenceClasses<Integer> tester = createEC();
 	}
 
+	/**
+	 * Tests contains() by filling a EquivClasses and checking if it contains
+	 * certain test values
+	 * */
 	@Test 
-	void testContains() {
-
+	void testContains() 
+	{
+		EquivalenceClasses<Integer> tester = createEC();
 	}
 
+	/**
+	 * Tests size() by filling a EquivClasses and checking its size
+	 * */
 	@Test 
-	void testSize() {
-
+	void testSize() 
+	{
+		EquivalenceClasses<Integer> tester = createEC();
 	}
 
+	/**
+	 * Tests numClasse() by filling a EquivClasses and
+	 * checking how many classes it contains
+	 * */
 	@Test 
-	void testNumClasses() {
-
+	void testNumClasses() 
+	{
+		EquivalenceClasses<Integer> tester = createEC();
 	}
 
+	/**
+	 * Tests indexOfClass() by filling a EquivClasses
+	 * and checking for if it contains test values and what class 
+	 * they are in
+	 * */
 	@Test 
-	void testIndexOfClass() {
-
+	void testIndexOfClass() 
+	{
+		EquivalenceClasses<Integer> tester = createEC();
 	}
 
+	/**
+	 * 
+	 * */
 	@Test 
-	void testToString() {
-
+	void testToString() 
+	{
+		EquivalenceClasses<Integer> tester = createEC();
 	}
 }

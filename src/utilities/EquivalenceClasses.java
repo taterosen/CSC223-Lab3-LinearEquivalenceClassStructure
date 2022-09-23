@@ -37,7 +37,8 @@ public class EquivalenceClasses<T>
 		boolean check = false;
 		for(int i = 0; i < numClasses(); i++) 
 		{
-			check = _rest.get(i).add(element);
+			if(_rest.get(i).belongs(element))
+				check = _rest.get(i).add(element);
 			if(check == true)
 				return check;
 		}
@@ -65,9 +66,8 @@ public class EquivalenceClasses<T>
 	{
 		int size = 0;
 		for(int i = 0; i < numClasses(); i++) 
-		{
 			size += _rest.get(i).size();
-		}
+		
 		return size;
 	}
 	
