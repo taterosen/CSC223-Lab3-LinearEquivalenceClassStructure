@@ -10,13 +10,24 @@ import java.util.Comparator;
 
 public class LinkedEquivalenceClassTest
 {
+	public LinkedEquivalenceClass createLEC() {
+		Comparator<Integer> c = new Comparator<Integer>()
+		{
+			// All even integers are 'equivalent'
+			// All odd integers are 'equivalent'
+			public int compare(Integer x, Integer y)
+			{ return x % 2 == y % 2 ? 0 : 1; }
+		};
+		return new LinkedEquivalenceClass(c);
+	}
+	
 	/**
 	 * Tests clear() by filling a LinkedEquivClass and then clearing it
 	 * */
 	@Test
 	void testClear() 
 	{
-		LinkedEquivalenceClass<Integer> tester = new LinkedEquivalenceClass<>(null);
+		LinkedEquivalenceClass<Integer> tester = createLEC();
 		tester.add(1);
 		tester.add(2);
 		tester.add(3);
@@ -30,36 +41,42 @@ public class LinkedEquivalenceClassTest
 	}
 	
 	/**
-	 * 
+	 * Tests clearNonCanocical by filling a LinkedEquivcClass then
+	 * clearing it ensure the canonical was unchanged
 	 * */
 	@Test
-	void testClearNonConical() 
+	void testClearNonCanonical() 
 	{
-		LinkedEquivalenceClass<Integer> tester = new LinkedEquivalenceClass<>(null);
+		LinkedEquivalenceClass<Integer> tester = createLEC();
+		tester.setCanonical(2);
 		tester.add(1);
 		tester.add(2);
 		tester.add(3);
 		tester.add(4);
 		tester.add(5);
-		assertEquals(5, tester.size());
+		assertEquals(6, tester.size());
+		assertEquals(2, tester.canonical());
 		tester.clearNonCanonical();
-		
 		assertEquals(1, tester.size());
+		assertEquals(2, tester.canonical());
 	}
 	
 	/**
-	 * 
+	 * Tests add() by adding to LinkedEquivClass
+	 * and ensuring it contains added elements
 	 * */
 	@Test
 	void testAdd() 
 	{
-		LinkedEquivalenceClass<Integer> tester = new LinkedEquivalenceClass<>(null);
+		LinkedEquivalenceClass<Integer> tester = createLEC();
 		assertTrue(tester.add(1));
 		assertTrue(tester.add(2));
 		assertTrue(tester.add(3));
 		assertTrue(tester.add(4));
 		assertTrue(tester.add(5));
 		assertTrue(tester.contains(1));
+		assertTrue(tester.contains(3));
+		assertTrue(tester.contains(5));
 	}
 	
 	/**
@@ -69,7 +86,7 @@ public class LinkedEquivalenceClassTest
 	@Test
 	void testContains() 
 	{
-		LinkedEquivalenceClass<Integer> tester = new LinkedEquivalenceClass<>(null);
+		LinkedEquivalenceClass<Integer> tester = createLEC();
 		tester.add(1);
 		tester.add(2);
 		tester.add(3);
@@ -84,11 +101,18 @@ public class LinkedEquivalenceClassTest
 	}
 	
 	/**
-	 * 
+	 * Tests belongs() by setting a canonical and testing if test values belongs 
+	 * based on said canonical
 	 * */
 	@Test
 	void testBelongs()
 	{
+		LinkedEquivalenceClass<Integer> tester = createLEC();
+		tester.setCanonical(2);
+		assertTrue(tester.belongs(4));
+		assertFalse(tester.belongs(5));
+		assertTrue(tester.belongs(6));
+		assertFalse(tester.belongs(7));
 		
 	}
 	
@@ -99,7 +123,7 @@ public class LinkedEquivalenceClassTest
 	@Test
 	void testRemove() 
 	{
-		LinkedEquivalenceClass<Integer> tester = new LinkedEquivalenceClass<>(null);
+		LinkedEquivalenceClass<Integer> tester = createLEC();
 		tester.add(1);
 		tester.add(2);
 		tester.add(3);
@@ -116,38 +140,55 @@ public class LinkedEquivalenceClassTest
 	}
 	
 	/**
-	 * 
+	 * Tests removeCanonical() an both empty and non-empty LinkedEquivClass
 	 * */
 	@Test
-	void testRemoveConical() 
+	void testRemoveCanonical() 
 	{
+		LinkedEquivalenceClass<Integer> tester = createLEC();
+		assertFalse(tester.removeCanonical());
+		tester.setCanonical(2);
+		tester.add(2);
+		tester.add(4);
+		tester.add(6);
+		tester.add(8);
+		assertEquals(2, tester.canonical());
+		assertTrue(tester.removeCanonical());
+		assertEquals(8, tester.canonical());
 		
 	}
 	
 	/**
-	 * 
+	 * Tests demoteAndSetCanonical() an both empty and non-empty LinkedEquivClass
 	 * */
 	@Test
-	void testDemoteAndSetConical() 
+	void testDemoteAndSetCanonical() 
 	{
+		LinkedEquivalenceClass<Integer> tester = createLEC();
+		assertFalse(tester.removeCanonical());
 		
+		tester.setCanonical(2);
+		tester.add(4);
+		tester.add(6);
+		tester.add(8);
+		assertTrue(tester.demoteAndSetCanonical(1));
+		assertEquals(1, tester.canonical());
 	}
 	
 	/**
-	 * 
+	 * Tests toString() an both empty and non-empty LinkedEquivClass
 	 * */
 	@Test
 	void testToString() 
 	{
-		LinkedEquivalenceClass<Integer> tester = new LinkedEquivalenceClass<>(null);
-		//assertEquals("Conical: null Rest: ", tester.toString());
-		
+		LinkedEquivalenceClass<Integer> tester = createLEC();
+		assertEquals("Class is empty", tester.toString());
 		tester.add(1);
 		tester.add(2);
 		tester.add(3);
 		tester.add(4);
 		tester.add(5);
 		
-		assertEquals("Conical: null Rest 5 4 3 2 1 ", tester.toString());
+		assertEquals("Canonical: null Rest: 5 4 3 2 1", tester.toString());
 	}
 }

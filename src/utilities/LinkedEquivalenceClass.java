@@ -27,6 +27,8 @@ public class LinkedEquivalenceClass<T>
 		_comparator = c;
 		_rest = new LinkedList<T>();
 	}
+	
+	public void setCanonical(T element) {_canonical = element;}
 
 	/**
 	 * Retrieves and returns the canonical
@@ -139,9 +141,9 @@ public class LinkedEquivalenceClass<T>
 	public boolean demoteAndSetCanonical(T element)
 	{
 		if (_canonical != null) {
-		T data = _rest.pop();
+		//T data = _rest.pop();
 		_rest.addToFront(_canonical);
-		_canonical = data;
+		_canonical = element;
 		return true;
 		}
 		return false;
@@ -153,6 +155,9 @@ public class LinkedEquivalenceClass<T>
 	 */
 	public String toString()
 	{
+		if(isEmpty())
+			return "Class is empty";
+		
 		StringBuilder str = new StringBuilder();
 		str.append("Canonical: " + _canonical + " Rest: ");
 		str.append(_rest.toString());
