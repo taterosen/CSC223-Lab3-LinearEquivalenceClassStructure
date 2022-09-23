@@ -202,6 +202,9 @@ public class LinkedList<T> {
 	 * @return data stored in node 
 	 */
 	public T peakFirst() {
+		// Check if the list is empty
+		if(this.isEmpty()) return null;
+		
 		return _head._next._item;
 	}
 	
@@ -210,6 +213,9 @@ public class LinkedList<T> {
 	 * @return data stored in node 
 	 */
 	public T peakLast() {
+		// Check if the list is empty
+		if(this.isEmpty()) return null;
+		
 		Node n = this.last();
 		return n._item;
 	}
@@ -219,6 +225,9 @@ public class LinkedList<T> {
 	 * @return data stored in node 
 	 */
 	public T pop() {
+		// Check if the list is empty
+		if(this.isEmpty()) return null;
+		
 		// Get data from first node
 		T data = _head._next._item;
 		// Set head node's next to the node after the first node
