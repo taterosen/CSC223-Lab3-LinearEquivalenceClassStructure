@@ -110,6 +110,7 @@ public class LinkedEquivalenceClass<T>
 	 */
 	public boolean belongs(T target)
 	{
+		if(target == null) return false;
 		return(_comparator.compare(_canonical, target) == 0);
 	}
 	
@@ -159,11 +160,10 @@ public class LinkedEquivalenceClass<T>
 	 */
 	public String toString()
 	{
-		if(isEmpty())
-			return "Class is empty";
+		if(this.isEmpty()) return "Class is empty";
 		
 		StringBuilder str = new StringBuilder();
-		str.append("Canonical: " + _canonical + " Rest: ");
+		str.append("Canonical: " + _canonical.toString() + " Rest: ");
 		str.append(_rest.toString());
 		
 		return str.toString();

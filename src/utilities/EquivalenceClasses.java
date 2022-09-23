@@ -40,7 +40,7 @@ public class EquivalenceClasses<T>
 				return _rest.get(i).add(element);
 			}
 		}
-		LinkedEquivalenceClass<T> lec = new LinkedEquivalenceClass<>(_comparator);
+		LinkedEquivalenceClass<T> lec = new LinkedEquivalenceClass<T>(_comparator);
 		if (!lec.add(element)) return false;
 		return _rest.add(lec);
 	}

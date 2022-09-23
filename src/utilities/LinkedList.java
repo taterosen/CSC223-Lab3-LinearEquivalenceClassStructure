@@ -105,9 +105,6 @@ public class LinkedList<T> {
 		return previous(target, this._head);
 	}
 
-	/**
-	 * 
-	 * */
 	private Node previous (T target, Node current) { 
 		if(current == _tail) return null;
 		if(current._next._item.equals(target)) return current;
@@ -161,6 +158,7 @@ public class LinkedList<T> {
 	 * */
 	@Override 
 	public String toString () {
+		if (this.isEmpty()) return "";
 		return toStringHelper(new StringBuilder(), _head._next);
 	}
 
