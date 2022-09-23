@@ -102,7 +102,7 @@ public class LinkedEquivalenceClassTest
 	
 	/**
 	 * Tests belongs() by setting a canonical and testing if test values belongs 
-	 * based on said canonical
+	 * based on said canonical (positive and negative)
 	 * */
 	@Test
 	void testBelongs()
@@ -113,6 +113,9 @@ public class LinkedEquivalenceClassTest
 		assertFalse(tester.belongs(5));
 		assertTrue(tester.belongs(6));
 		assertFalse(tester.belongs(7));
+		
+		assertTrue(tester.belongs(-4));
+		assertFalse(tester.belongs(-3));
 		
 	}
 	
@@ -130,13 +133,12 @@ public class LinkedEquivalenceClassTest
 		tester.add(4);
 		tester.add(5);
 		
-		assertTrue(tester.remove(1));
-		assertFalse(tester.contains(1));
 		assertTrue(tester.remove(2));
+		assertFalse(tester.contains(2));
 		assertTrue(tester.remove(3));
 		assertTrue(tester.remove(4));
 		assertTrue(tester.remove(5));
-		assertEquals(0, tester.size());
+		assertEquals(1, tester.size());
 	}
 	
 	/**
@@ -189,6 +191,6 @@ public class LinkedEquivalenceClassTest
 		tester.add(4);
 		tester.add(5);
 		
-		assertEquals("Canonical: null Rest: 5 4 3 2 1", tester.toString());
+		assertEquals("Canonical: 1 Rest: 5 4 3 2", tester.toString());
 	}
 }
